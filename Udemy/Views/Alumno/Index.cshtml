@@ -21,6 +21,9 @@
             Sexo
         </th>
         <th>
+            Ciudad
+        </th>
+        <th>
             Fecha Alta
         </th>
         <th></th>
@@ -28,34 +31,37 @@
 
 @foreach (var item in Model)
 {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NombreCompleto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Edad)
-        </td>
-        <td>
-            @{ 
-                if (item.Sexo == "M")
-                {
-                    <span>Masculino</span>
-                }
-                else
-                { 
-                    <span>Femenino</span>
-                }
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.NombreCompleto)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Edad)
+    </td>
+    <td>
+        @{
+            if (item.Sexo == "M")
+            {
+                <span>Masculino</span>
             }
-        </td>
-        <td>
-            @item.FechaRegistro.ToShortDateString()
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Editar", new { id=item.ID }) |
-            @Html.ActionLink("Detalles", "Detallesalumno", new { id=item.ID }) |
-            @Html.ActionLink("Eliminar", "EliminarAlumno", new { id=item.ID }, new { @class = "aElimina"})
-        </td>
-    </tr>
+            else
+            {
+                <span>Femenino</span>
+            }
+        }
+    </td>
+    <td>
+        @Udemy.Controllers.AlumnoController.NombreCiudad(item.CodCiudad)
+    </td>
+    <td>
+        @item.FechaRegistro.ToShortDateString()
+    </td>
+    <td>
+        @Html.ActionLink("Editar", "Editar", new { id = item.ID }) |
+        @Html.ActionLink("Detalles", "Detallesalumno", new { id = item.ID }) |
+        @Html.ActionLink("Eliminar", "EliminarAlumno", new { id = item.ID }, new { @class = "aElimina" })
+    </td>
+</tr>
 }
 
 </table>

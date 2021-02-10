@@ -20,6 +20,9 @@ namespace Udemy.Models
         [Required]
         [Display(Name = "Sexo del Alumno")]
         public string Sexo { get; set; }
+        [Required]
+        [Display(Name = "Ciudad")]
+        public int CodCiudad { get; set; }
     }
 
     [MetadataType(typeof(AlumnoCE))]

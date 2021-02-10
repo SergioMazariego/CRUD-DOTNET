@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Udemy.Models.Ciudad>
+
+<select class="form-control" id="CodCiudad" name="CodCiudad">
+    @foreach (var item in Model)
+    {
+        <option value="@item.ID">@item.Nombre</option>
+    }
+</select>
+
+
+

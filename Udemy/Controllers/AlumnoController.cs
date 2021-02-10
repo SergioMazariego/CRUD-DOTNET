@@ -57,6 +57,16 @@ namespace Udemy.Controllers
                 return View();
             }
         }
+        public ActionResult Agregar2()
+        {
+            return View();
+        }
+        public ActionResult ListaCiudades()
+        {
+            using (var db = new AlumnosContect())
+            {
+                return PartialView(db.Ciudad.ToList());            }
+        }
 
         public ActionResult Editar(int id) 
         {
@@ -90,6 +100,7 @@ namespace Udemy.Controllers
                     al.Apellidos = a.Apellidos;
                     al.Edad = a.Edad;
                     al.Sexo = a.Sexo;
+                    al.CodCiudad = a.CodCiudad;
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -117,6 +128,14 @@ namespace Udemy.Controllers
                 db.Alumno.Remove(alu);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+            }
+        }
+
+        public static string NombreCiudad(int CodCiudad) 
+        {
+            using (var db = new AlumnosContect())
+            {
+                return db.Ciudad.Find(CodCiudad).Nombre;
             }
         }
     }
