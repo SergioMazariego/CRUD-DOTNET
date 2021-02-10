@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
+
 
 namespace Udemy.Models
 {
     public class AlumnoCE
     {
+        public int ID { get; set; }
         [Required]
         [Display(Name = "Ingrese Nombres")]
         public string Nombres { get; set; }
@@ -23,6 +21,7 @@ namespace Udemy.Models
         [Required]
         [Display(Name = "Ciudad")]
         public int CodCiudad { get; set; }
+
     }
 
     [MetadataType(typeof(AlumnoCE))]
