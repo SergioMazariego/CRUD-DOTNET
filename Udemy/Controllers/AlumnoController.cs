@@ -12,10 +12,19 @@ namespace Udemy.Controllers
         // GET: Alumno
         public ActionResult Index()
         {
+            try
+            {
+                using (var db = new AlumnosContect())
+                {
+                    //List<Alumno> lista = db.Alumno.Where(a => a.Edad >= 18).ToList();
+                    return View(db.Alumno.ToList());
+                }
+            }
+            catch (Exception)
+            {
 
-            AlumnosContect db = new AlumnosContect();
-
-            return View(db.Alumno.ToList());
+                throw;
+            }
         }
         public ActionResult Agregar()
         {
@@ -46,6 +55,68 @@ namespace Udemy.Controllers
 
                 ModelState.AddModelError("", "Error al registrar Alumno - " + ex.Message);
                 return View();
+            }
+        }
+
+        public ActionResult Editar(int id) 
+        {
+            try
+            {
+                using (var db = new AlumnosContect())
+                {
+                    Alumno alu = db.Alumno.Find(id);
+                    return View(alu); ;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }     
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Editar(Alumno a)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return View();
+
+                using (var db = new AlumnosContect()) 
+                {
+                    Alumno al = db.Alumno.Find(a.ID);
+                    al.Nombres = a.Nombres;
+                    al.Apellidos = a.Apellidos;
+                    al.Edad = a.Edad;
+                    al.Sexo = a.Sexo;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        public ActionResult Detallesalumno(int id) 
+        {
+            using (var db = new AlumnosContect())
+            {
+                Alumno alu = db.Alumno.Find(id);
+                return View(alu);
+            }
+        }
+        public ActionResult EliminarAlumno(int id)
+        {
+            using (var db = new AlumnosContect())
+            {
+                Alumno alu = db.Alumno.Find(id);
+                db.Alumno.Remove(alu);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
         }
     }

@@ -51,11 +51,21 @@
             @item.FechaRegistro.ToShortDateString()
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Editar", "Editar", new { id=item.ID }) |
+            @Html.ActionLink("Detalles", "Detallesalumno", new { id=item.ID }) |
+            @Html.ActionLink("Eliminar", "EliminarAlumno", new { id=item.ID }, new { @class = "aElimina"})
         </td>
     </tr>
 }
 
 </table>
+
+@section scripts{
+        <script>
+            $(".aElimina").click(function (event) {
+                if (!confirm('Estas seguro de eliminar?')) {
+                    event.preventDefault();
+                }
+            });
+    </script>
+}
