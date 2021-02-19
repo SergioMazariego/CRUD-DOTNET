@@ -41,5 +41,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Nota">
+      <EntityTypeMapping TypeName="AlumnosDBModel.Nota">
+        <MappingFragment StoreEntitySet="Nota">
+          <ScalarProperty Name="Nota2" ColumnName="Nota2" />
+          <ScalarProperty Name="Nota1" ColumnName="Nota1" />
+          <ScalarProperty Name="IDMateria" ColumnName="IDMateria" />
+          <ScalarProperty Name="IDAlumno" ColumnName="IDAlumno" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

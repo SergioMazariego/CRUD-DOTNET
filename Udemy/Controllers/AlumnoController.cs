@@ -121,12 +121,21 @@ namespace Udemy.Controllers
         }
         public ActionResult EliminarAlumno(int id)
         {
-            using (var db = new AlumnosContect())
+            try
             {
-                Alumno alu = db.Alumno.Find(id);
-                db.Alumno.Remove(alu);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                using (var db = new AlumnosContect())
+                {
+                    Alumno alu = db.Alumno.Find(id);
+                    db.Alumno.Remove(alu);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception)
+            {
+
+                ModelState.AddModelError("", "Una nota depende de este alumno, no se puede eliminar hasta entonces.");
+                return View("Error");
             }
         }
 

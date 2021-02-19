@@ -14,6 +14,12 @@ namespace Udemy.Models
     
     public partial class Alumno
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Alumno()
+        {
+            this.Nota = new HashSet<Nota>();
+        }
+    
         public int ID { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
@@ -23,5 +29,7 @@ namespace Udemy.Models
         public int CodCiudad { get; set; }
     
         public virtual Ciudad Ciudad { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Nota> Nota { get; set; }
     }
 }

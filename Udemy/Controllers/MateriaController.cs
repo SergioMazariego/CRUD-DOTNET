@@ -51,11 +51,83 @@ namespace Udemy.Controllers
             catch (Exception ex)
             {
 
-                ModelState.AddModelError("", "Error al registrar materia - " + ex.InnerException);
+                ModelState.AddModelError("", "Error al registrar materia");
                 return View();
             }
         }
 
+        public ActionResult Editar(int id)
+        {
+            try
+            {
+                using (var db = new AlumnosContect())
+                {
+                    Materia materia = db.Materia.Find(id);
+                    return View(materia);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Editar(Materia m)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return View();
+
+                using (var db = new AlumnosContect())
+                {
+                    Materia materia = db.Materia.Find(m.ID);
+                    materia.Nombre = m.Nombre;
+                    materia.IDMaestro = m.IDMaestro;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public ActionResult EliminarMateria(int id)
+        {
+            try
+            {
+                using (var db = new AlumnosContect())
+                {
+                    Materia materia = db.Materia.Find(id);
+                    db.Materia.Remove(materia);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ModelState.AddModelError("", "Un alumno depende de esta materia, no se puede eliminar hasta entonces.");
+                return View("Error");
+            }
+        }
+
+
+        public ActionResult DetallesMateria(int id)
+        {
+            using (var db = new AlumnosContect())
+            {
+                Materia materia = db.Materia.Find(id);
+                return View(materia);
+            }
+            
+        }
         public static string NombreMaestro(int IDMaestro)
         {
             using (var db = new AlumnosContect())

@@ -100,12 +100,21 @@ namespace Udemy.Controllers
         }
         public ActionResult EliminarDocente(int id)
         {
-            using (var db = new AlumnosContect())
+            try
             {
-                Maestro maestro = db.Maestro.Find(id);
-                db.Maestro.Remove(maestro);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                using (var db = new AlumnosContect())
+                {
+                    Maestro maestro = db.Maestro.Find(id);
+                    db.Maestro.Remove(maestro);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception)
+            {
+
+                ModelState.AddModelError("", "Una materia depende de este docente, no se puede eliminar hasta entonces.");
+                return View("Error");
             }
         }
 

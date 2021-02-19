@@ -36,6 +36,16 @@
     <Property Name="Nombre" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="IDMaestro" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="Nota">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDAlumno" Type="int" Nullable="false" />
+    <Property Name="IDMateria" Type="int" Nullable="false" />
+    <Property Name="Nota1" Type="int" Nullable="false" />
+    <Property Name="Nota2" Type="int" Nullable="false" />
+  </EntityType>
   <Association Name="FK_Alumno_Ciudad">
     <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="1" />
     <End Role="Alumno" Type="Self.Alumno" Multiplicity="*" />
@@ -60,11 +70,36 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Nota_Alumno">
+    <End Role="Alumno" Type="Self.Alumno" Multiplicity="1" />
+    <End Role="Nota" Type="Self.Nota" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alumno">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Nota">
+        <PropertyRef Name="IDAlumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nota_Materia">
+    <End Role="Materia" Type="Self.Materia" Multiplicity="1" />
+    <End Role="Nota" Type="Self.Nota" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Materia">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Nota">
+        <PropertyRef Name="IDMateria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="AlumnosDBModelStoreContainer">
     <EntitySet Name="Alumno" EntityType="Self.Alumno" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ciudad" EntityType="Self.Ciudad" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Maestro" EntityType="Self.Maestro" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Materia" EntityType="Self.Materia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Nota" EntityType="Self.Nota" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Alumno_Ciudad" Association="Self.FK_Alumno_Ciudad">
       <End Role="Ciudad" EntitySet="Ciudad" />
       <End Role="Alumno" EntitySet="Alumno" />
@@ -72,6 +107,14 @@
     <AssociationSet Name="FK_Materia_Maestro" Association="Self.FK_Materia_Maestro">
       <End Role="Maestro" EntitySet="Maestro" />
       <End Role="Materia" EntitySet="Materia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nota_Alumno" Association="Self.FK_Nota_Alumno">
+      <End Role="Alumno" EntitySet="Alumno" />
+      <End Role="Nota" EntitySet="Nota" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nota_Materia" Association="Self.FK_Nota_Materia">
+      <End Role="Materia" EntitySet="Materia" />
+      <End Role="Nota" EntitySet="Nota" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

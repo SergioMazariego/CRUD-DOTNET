@@ -1,0 +1,50 @@
+﻿@model Udemy.Models.Nota
+
+@{
+    ViewBag.Title = "DetallesNota";
+}
+
+<h2>DetallesNota</h2>
+
+<div>
+    <h4>Nota</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Alumno
+        </dt>
+
+        <dd>
+            @Udemy.Controllers.NotaController.NombreAlumno(Model.IDAlumno)
+        </dd>
+
+        <dt>
+            Materia
+        </dt>
+
+        <dd>
+            @Udemy.Controllers.NotaController.NombreMateria(Model.IDMateria)
+        </dd>
+
+        <dt>
+            Nota 1
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nota1)
+        </dd>
+
+        <dt>
+            Nota 2
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nota2)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.ID }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

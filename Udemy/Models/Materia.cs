@@ -14,10 +14,18 @@ namespace Udemy.Models
     
     public partial class Materia
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Materia()
+        {
+            this.Nota = new HashSet<Nota>();
+        }
+    
         public int ID { get; set; }
         public string Nombre { get; set; }
         public int IDMaestro { get; set; }
     
         public virtual Maestro Maestro { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Nota> Nota { get; set; }
     }
 }

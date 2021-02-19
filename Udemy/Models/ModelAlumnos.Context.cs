@@ -29,5 +29,6 @@ namespace Udemy.Models
         public virtual DbSet<Ciudad> Ciudad { get; set; }
         public virtual DbSet<Maestro> Maestro { get; set; }
         public virtual DbSet<Materia> Materia { get; set; }
+        public virtual DbSet<Nota> Nota { get; set; }
     }
 }
