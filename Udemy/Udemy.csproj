@@ -129,7 +129,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AlumnoController.cs" />
+    <Compile Include="Controllers\DocenteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MateriaController.cs" />
+    <Compile Include="Controllers\NotaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -138,6 +141,12 @@
     </Compile>
     <Compile Include="Models\AlumnoCE.cs" />
     <Compile Include="Models\Ciudad.cs">
+      <DependentUpon>ModelAlumnos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Maestro.cs">
+      <DependentUpon>ModelAlumnos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Materia.cs">
       <DependentUpon>ModelAlumnos.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelAlumnos.Context.cs">
@@ -216,9 +225,15 @@
     <Content Include="Views\Alumno\Detallesalumno.cshtml" />
     <Content Include="Views\Alumno\Agregar2.cshtml" />
     <Content Include="Views\Alumno\ListaCiudades.cshtml" />
+    <Content Include="Views\Docente\Index.cshtml" />
+    <Content Include="Views\Docente\Agregar.cshtml" />
+    <Content Include="Views\Materia\Index.cshtml" />
+    <Content Include="Views\Materia\Agregar.cshtml" />
+    <Content Include="Views\Materia\ListaDocentes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Nota\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

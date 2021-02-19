@@ -16,19 +16,6 @@ namespace Udemy.Controllers
             {
                 using (var db = new AlumnosContect())
                 {
-                    /*var data = from a in db.Alumno
-                               join c in db.Ciudad on a.CodCiudad equals c.ID
-                               select new AlumnoCE()
-                               {
-                                   ID = a.ID,
-                                   Nombres = a.Nombres,
-                                   Apellidos = a.Apellidos,
-                                   Edad = a.Edad,
-                                   Sexo = a.Sexo,
-                                   NombreCiudad = c.Nombre,
-                                   FechaRegistro = a.FechaRegistro
-                               };*/
-                    //List<Alumno> lista = db.Alumno.Where(a => a.Edad >= 18).ToList();
                     return View(db.Alumno.ToList());
                 }
             }
