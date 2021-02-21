@@ -9,10 +9,19 @@
 <p>
     @Html.ActionLink("Agregar notas", "Agregar")
 </p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Buscar por nombre: @Html.TextBox("SearchString")
+        <input type="submit" value="Buscar" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
-            Alumno
+            @Html.ActionLink("Nombres", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th>
         <th>
             Materia
@@ -26,26 +35,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Udemy.Controllers.NotaController.NombreAlumno(item.IDAlumno)
-    </td>
-    <td>
-        @Udemy.Controllers.NotaController.NombreMateria(item.IDMateria)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Nota1)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Nota2)
-    </td>
-    <td>
-        @Html.ActionLink("Editar", "Editar", new { id = item.ID }) |
-        @Html.ActionLink("Detalles", "DetallesNota", new { id = item.ID }) |
-        @Html.ActionLink("Eliminar", "EliminarNota", new { id = item.ID })
-    </td>
-</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Udemy.Controllers.NotaController.NombreAlumno(item.IDAlumno)
+            </td>
+            <td>
+                @Udemy.Controllers.NotaController.NombreMateria(item.IDMateria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nota1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nota2)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { id = item.ID }) |
+                @Html.ActionLink("Detalles", "DetallesNota", new { id = item.ID }) |
+                @Html.ActionLink("Eliminar", "EliminarNota", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>

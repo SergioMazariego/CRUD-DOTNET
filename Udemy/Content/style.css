@@ -1,0 +1,38 @@
+﻿body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #024d4d;
+}
+footer p {
+    color: white;
+}
+p a {
+    color: white;
+}
+td,th {
+    color: white;
+}
+form p {
+color:white;
+}
+input {
+    color: black;
+}
+td a {
+    font-weight: bold;
+}
+th, td {
+    background-color: #eeeeee;
+    color: black;
+}
+table {
+border-collapse: collapse;
+}
+.jumbotron {
+    text-align: center;
+    vertical-align: middle;
+    height: 70vh;
+    display: table-cell;
+    width: 100vw;
+}
+
+

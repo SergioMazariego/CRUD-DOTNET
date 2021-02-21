@@ -10,10 +10,28 @@ namespace Udemy.Controllers
     public class NotaController : Controller
     {
         // GET: Nota
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
-            AlumnosContect db = new AlumnosContect(); 
-            return View(db.Nota.ToList());
+            AlumnosContect db = new AlumnosContect();
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            var nota = from n in db.Nota
+                           select n;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                nota = nota.Where(n => n.Alumno.Nombres.Contains(searchString)
+                                       || n.Alumno.Apellidos.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    nota = nota.OrderByDescending(n => n.Alumno.Nombres);
+                    break;
+                default:
+                    nota = nota.OrderBy(n => n.Alumno.Nombres);
+                    break;
+            }
+            return View(nota.ToList());
         }
 
         public ActionResult Agregar()
