@@ -34,5 +34,9 @@ border-collapse: collapse;
     display: table-cell;
     width: 100vw;
 }
+h4, label {
+    color: white;
+}
+
 
 
