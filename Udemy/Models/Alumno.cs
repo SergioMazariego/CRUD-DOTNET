@@ -9,6 +9,7 @@
 
 namespace Udemy.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -27,9 +28,10 @@ namespace Udemy.Models
         public string Sexo { get; set; }
         public System.DateTime FechaRegistro { get; set; }
         public int CodCiudad { get; set; }
-    
+        [JsonIgnore]
         public virtual Ciudad Ciudad { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore]
         public virtual ICollection<Nota> Nota { get; set; }
     }
 }
